@@ -27,6 +27,16 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+app.use((req, res, next) => {
+    if (typeof req.body === "string" && req.body.length > 0) {
+        try {
+            req.body = JSON.parse(req.body);
+        } catch (e) {}
+    }
+    req.body = req.body || {};
+    next();
+});
+
 
 // ===============================
 // SERVE FRONTEND
@@ -142,13 +152,13 @@ db.run(`
 
 app.get("/", (req, res) => {
 
-    res.sendFile(
-        path.join(
-            __dirname,
-            "public",
-            "index.html"
-        )
-    );
+    const indexPath = path.join(__dirname, "public", "index.html");
+
+    if (fs.existsSync(indexPath)) {
+        res.sendFile(indexPath);
+    } else {
+        res.json({ status: "ok", message: "Online Job Finder API is running" });
+    }
 
 });
 
