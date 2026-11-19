@@ -4,13 +4,15 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const path = require("path");
+const fs = require("fs");
+const os = require("os");
 require("dotenv").config();
 
 const app = express();
 
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
-const JWT_SECRET = "jobfinder_secret_12345";
+const JWT_SECRET = process.env.JWT_SECRET || "jobfinder_secret_12345";
 
 
 // ===============================
@@ -41,8 +43,30 @@ app.use(
 // DATABASE
 // ===============================
 
+const isVercel = process.env.VERCEL === "1" || !!process.env.VERCEL;
+
+let dbPath;
+
+if (isVercel) {
+    dbPath = path.join(os.tmpdir(), "jobfinder.db");
+    const packagedDb = path.join(__dirname, "database", "jobfinder.db");
+    if (fs.existsSync(packagedDb) && !fs.existsSync(dbPath)) {
+        try {
+            fs.copyFileSync(packagedDb, dbPath);
+        } catch (copyErr) {
+            console.warn("Could not copy initial database to tmp:", copyErr.message);
+        }
+    }
+} else {
+    const dbDir = path.join(__dirname, "database");
+    if (!fs.existsSync(dbDir)) {
+        fs.mkdirSync(dbDir, { recursive: true });
+    }
+    dbPath = path.join(dbDir, "jobfinder.db");
+}
+
 const db = new sqlite3.Database(
-    "./database/jobfinder.db",
+    dbPath,
     (err) => {
 
         if (err) {
@@ -55,7 +79,7 @@ const db = new sqlite3.Database(
         } else {
 
             console.log(
-                "Connected to SQLite database"
+                `Connected to SQLite database at ${dbPath}`
             );
 
         }
@@ -1411,7 +1435,7 @@ app.post(
 
         try {
 
-            const { apiKey } = req.body;
+            const apiKey = req.body.apiKey || process.env.GEMINI_API_KEY;
 
             // -------------------------------
             // CHECK API KEY
@@ -2109,13 +2133,17 @@ app.get(
     }
 );
 
-app.listen(
-    PORT,
-    () => {
+if (require.main === module) {
+    app.listen(
+        PORT,
+        () => {
 
-        console.log(
-            `Server running at http://localhost:${PORT}`
-        );
+            console.log(
+                `Server running at http://localhost:${PORT}`
+            );
 
-    }
-);
+        }
+    );
+}
+
+module.exports = app;
