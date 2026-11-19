@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Create Account</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="auth-container">
+
+    <div class="auth-card">
+
+        <div class="logo">
+            JobFinder<span>AI</span>
+        </div>
+
+
+        <h1>
+            Create Account
+        </h1>
+
+
+        <p>
+            Start finding your next opportunity.
+        </p>
+
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Full Name"
+        >
+
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Email Address"
+        >
+
+
+        <input
+            id="password"
+            type="password"
+            placeholder="Password"
+        >
+
+
+        <button onclick="register()">
+            Create Account
+        </button>
+
+
+        <div
+            id="message"
+            class="message"
+        ></div>
+
+
+        <a
+            href="login.html"
+            class="auth-link"
+        >
+            Already have an account? Login
+        </a>
+
+    </div>
+
+</div>
+
+
+<script>
+
+async function register() {
+
+    const name =
+        document.getElementById("name").value;
+
+    const email =
+        document.getElementById("email").value;
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if (!name || !email || !password) {
+
+        document.getElementById("message")
+            .textContent =
+            "Please fill all fields.";
+
+        return;
+
+    }
+
+
+    try {
+
+        const response =
+            await fetch(
+                "/api/register",
+                {
+
+                    method: "POST",
+
+                    headers: {
+
+                        "Content-Type":
+                            "application/json"
+
+                    },
+
+                    body: JSON.stringify({
+
+                        name,
+                        email,
+                        password
+
+                    })
+
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        document.getElementById("message")
+            .textContent =
+            data.message;
+
+
+        if (response.ok) {
+
+            setTimeout(
+                () => {
+
+                    window.location.href =
+                        "login.html";
+
+                },
+                1000
+            );
+
+        }
+
+    } catch (error) {
+
+        document.getElementById("message")
+            .textContent =
+            "Server connection failed.";
+
+    }
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        My Applications | JobFinder AI
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            JobFinder<span>AI</span>
+
+        </div>
+
+
+        <nav>
+
+            <a href="dashboard.html">
+                🏠 Dashboard
+            </a>
+
+
+            <a
+                href="applications.html"
+                class="active"
+            >
+                📋 Applications
+            </a>
+
+
+            <a>
+                👤 My Profile
+            </a>
+
+
+            <a>
+                🔔 Job Alerts
+            </a>
+
+        </nav>
+
+
+        <button
+            onclick="logout()"
+            class="logout-btn"
+        >
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    My Applications
+                </h1>
+
+                <p>
+                    Track your job applications
+                    in one place.
+                </p>
+
+            </div>
+
+
+            <div class="avatar">
+                P
+            </div>
+
+        </header>
+
+
+
+        <!-- APPLICATION SUMMARY -->
+
+        <section class="application-summary">
+
+
+            <div class="summary-card">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="totalCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Applied
+                </span>
+
+                <strong id="appliedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Interview
+                </span>
+
+                <strong id="interviewCount">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="summary-card">
+
+                <span>
+                    Selected
+                </span>
+
+                <strong id="selectedCount">
+                    0
+                </strong>
+
+            </div>
+
+
+        </section>
+
+
+
+        <!-- APPLICATION LIST -->
+
+        <section>
+
+            <div class="jobs-heading">
+
+                <h2>
+                    Application Tracker
+                </h2>
+
+            </div>
+
+
+            <div
+                id="applications"
+                class="applications-list"
+            >
+
+                <p>
+                    Loading applications...
+                </p>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="js/applications.js"></script>
+
+
+</body>
+
+</html>

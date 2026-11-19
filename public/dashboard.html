@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        JobFinder AI Dashboard
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<div class="dashboard">
+
+
+    <!-- =====================
+         SIDEBAR
+    ====================== -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+
+            JobFinder<span>AI</span>
+
+        </div>
+
+
+        <nav>
+
+            <a class="active">
+                🏠 Dashboard
+            </a>
+
+            <a href="applications.html">
+                 📋 Applications
+            </a>
+
+
+            <a href="profile.html">
+               👤 My Profile
+            </a>
+
+            <a href="alerts.html">
+               🔔 Job Alerts
+            </a>
+
+            
+        </nav>
+
+
+        <button
+            onclick="logout()"
+            class="logout-btn"
+        >
+
+            Logout
+
+        </button>
+
+    </aside>
+
+
+
+    <!-- =====================
+         MAIN CONTENT
+    ====================== -->
+
+    <main class="main-content">
+
+
+        <!-- HEADER -->
+
+        <header class="dashboard-header">
+
+            <div>
+
+                <h1>
+                    Good morning,
+                    <span id="userName">
+                        User
+                    </span> 👋
+                </h1>
+
+                <p>
+                    Find your next opportunity.
+                </p>
+
+            </div>
+
+
+            <div class="avatar">
+                P
+            </div>
+
+        </header>
+
+
+
+        <!-- HERO -->
+
+        <section class="hero">
+
+            <div>
+
+                <small>
+                    AI-POWERED JOB SEARCH
+                </small>
+
+                <h2>
+                    Find a job that
+                    matches your skills.
+                </h2>
+
+                <p>
+                    Search thousands of opportunities
+                    and discover your next career move.
+                </p>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- FILTER -->
+
+        <section class="filter-box">
+
+            <h2>
+                Find Jobs
+            </h2>
+
+
+            <div class="filters">
+
+
+                <input
+                    id="location"
+                    type="text"
+                    placeholder="📍 Location"
+                >
+
+
+                <select id="industry">
+
+                    <option value="">
+                        All Industries
+                    </option>
+
+                    <option value="IT">
+                        IT
+                    </option>
+
+                    <option value="Data">
+                        Data
+                    </option>
+
+                    <option value="Testing">
+                        Testing
+                    </option>
+
+                    <option value="Design">
+                        Design
+                    </option>
+
+                </select>
+
+
+                <input
+                    id="minSalary"
+                    type="number"
+                    placeholder="Minimum Salary"
+                >
+
+
+                <input
+                    id="maxSalary"
+                    type="number"
+                    placeholder="Maximum Salary"
+                >
+
+
+                <button
+                    onclick="loadJobs()"
+                    class="search-btn"
+                >
+
+                    Search Jobs
+
+                </button>
+
+
+            </div>
+
+        </section>
+
+
+
+        <!-- AI CARD -->
+
+        <section class="ai-card">
+
+            <div>
+
+                <div class="ai-icon">
+                    ✨
+                </div>
+
+                <div>
+
+                    <h3>
+                        AI Job Recommendations
+                    </h3>
+
+                    <p>
+                        Get personalized job suggestions
+                        based on your skills.
+                    </p>
+
+                </div>
+
+            </div>
+
+             <button
+               id="askGeminiBtn"
+               type="button"
+            >
+              🤖 Ask Gemini
+             </button>
+
+          <!-- GEMINI AI RECOMMENDATIONS -->
+
+<div class="gemini-box">
+
+    <div class="gemini-header">
+
+        <div>
+            <h2>🤖 AI Job Recommendations</h2>
+
+            <p>
+                Get personalized job recommendations based on
+                your profile, skills and salary preferences.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="gemini-input-area">
+
+        <input
+            type="password"
+            id="geminiApiKey"
+            placeholder="Enter your Gemini API key"
+        >
+
+        <button
+            id="generateRecommendationsBtn"
+            type="button"
+            class="primary-btn"
+        >
+            🤖 Ask Gemini
+        </button>
+
+    </div>
+
+    <div
+        id="geminiLoading"
+        style="display:none;"
+    >
+        ⏳ Gemini is analyzing your profile and available jobs...
+    </div>
+
+    <div id="geminiResult"></div>
+
+ 
+</div> 
+            
+
+        </section>
+
+
+
+        <!-- JOBS -->
+
+        <section class="jobs-section">
+
+            <div class="jobs-heading">
+
+                <h2>
+                    Available Jobs
+                </h2>
+
+                <span id="jobCount">
+                    0 jobs
+                </span>
+
+            </div>
+
+
+            <div
+                id="jobs"
+                class="jobs-grid"
+            >
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<script src="js/dashboard.js"></script>
+
+
+</body>
+
+</html>

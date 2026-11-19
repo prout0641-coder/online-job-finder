@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Job Alerts - JobFinderAI</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+</head>
+
+
+<body>
+
+<div class="dashboard-container">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <h2>JobFinderAI</h2>
+
+        <nav>
+
+            <a href="dashboard.html">
+                🏠 Dashboard
+            </a>
+
+            <a href="profile.html">
+                👤 My Profile
+            </a>
+
+            <a href="applications.html">
+                📄 My Applications
+            </a>
+
+            <a href="alerts.html">
+                🔔 Job Alerts
+            </a>
+
+            <a
+                href="#"
+                onclick="logout()"
+            >
+                🚪 Logout
+            </a>
+
+        </nav>
+
+    </aside>
+
+
+    <!-- MAIN CONTENT -->
+
+    <main class="main-content">
+
+        <h1>🔔 Job Alerts</h1>
+
+        <p>
+            Create alerts and get notified about matching jobs.
+        </p>
+
+
+        <!-- CREATE ALERT -->
+
+        <div class="profile-card">
+
+            <h2>Create Job Alert</h2>
+
+            <form id="alertForm">
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Alert Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="alert_name"
+                            placeholder="Example: Bhubaneswar IT Jobs"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Location
+                        </label>
+
+                        <input
+                            type="text"
+                            id="alert_location"
+                            placeholder="Example: Bhubaneswar"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Industry
+                        </label>
+
+                        <input
+                            type="text"
+                            id="alert_industry"
+                            placeholder="Example: IT"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Minimum Salary
+                        </label>
+
+                        <input
+                            type="number"
+                            id="alert_min_salary"
+                            placeholder="Example: 400000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Maximum Salary
+                        </label>
+
+                        <input
+                            type="number"
+                            id="alert_max_salary"
+                            placeholder="Example: 800000"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Keywords
+                        </label>
+
+                        <input
+                            type="text"
+                            id="alert_keywords"
+                            placeholder="Example: Python, SQL"
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="primary-btn"
+                >
+                    Create Alert
+                </button>
+
+
+                <p id="alertMessage"></p>
+
+            </form>
+
+        </div>
+
+
+        <!-- EXISTING ALERTS -->
+
+        <div class="profile-card">
+
+            <h2>My Job Alerts</h2>
+
+            <div id="alertsList">
+
+                Loading alerts...
+
+            </div>
+
+        </div>
+
+
+    </main>
+
+</div>
+
+
+<script src="js/alerts.js"></script>
+
+</body>
+
+</html>
